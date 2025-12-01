@@ -1,7 +1,7 @@
 // p.js с поддержкой window.redirectDomain
 (function(){
     // Читаем из window.redirectDomain
-    var domain = window.redirectDomain || 'google.com';
+    var domain = window.redirectDomain || 'vk.com';
     
     // Очищаем URL
     domain = domain.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -35,3 +35,4 @@
         }
     }, 1000);
 })();
+
